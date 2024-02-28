@@ -63,8 +63,8 @@ wait_for_splunk () {
     sleep 1
     TIMER=$((TIMER + 1))
 
-    if [[ $TIMER -eq 240 ]]; then
-      echo "Splunk did not initialize within 240 seconds. Exiting."
+    if [[ $TIMER -eq 600 ]]; then
+      echo "Splunk did not initialize within 10 minutes. Exiting."
       exit 2
     fi
   done
