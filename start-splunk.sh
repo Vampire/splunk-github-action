@@ -1,18 +1,20 @@
 #!/bin/sh
 
 SPLUNK_IMAGE=${1:-"splunk/splunk:latest"}
-SPLUNK_APPS_URL=${2-""}
-SPLUNK_PASSWORD=${3}
-SPLUNK_CLOUD_USERNAME=${4}
-SPLUNK_CLOUD_PASSWORD=${5}
-SPLUNK_LICENSE_URI=${6}
-SPLUNK_APP_PORT=${7:-"8000"}
-SPLUNK_MGMT_PORT=${8:-"8089"}
-TZ=${9:-"UTC"}
+SPLUNK_CONTAINER_NAME=${2:-"so1"}
+SPLUNK_APPS_URL=${3-""}
+SPLUNK_PASSWORD=${4}
+SPLUNK_CLOUD_USERNAME=${5}
+SPLUNK_CLOUD_PASSWORD=${6}
+SPLUNK_LICENSE_URI=${7}
+SPLUNK_APP_PORT=${8:-"8000"}
+SPLUNK_MGMT_PORT=${9:-"8089"}
+TZ=${10:-"UTC"}
 
 # Log the configurations
 echo "::group::Starting Splunk instance"
 echo "  - image [$SPLUNK_IMAGE]"
+echo "  - container name [$SPLUNK_CONTAINER_NAME]"
 echo "  - apps url [$SPLUNK_APPS_URL]"
 echo "  - password [$SPLUNK_PASSWORD]"
 echo "  - cloud username [$SPLUNK_CLOUD_USERNAME]"
@@ -23,7 +25,7 @@ echo "  - mgmt port [$SPLUNK_MGMT_PORT]"
 echo "  - timezone [$TZ]"
 echo ""
 
-docker run --name so1 \
+docker run --name $SPLUNK_CONTAINER_NAME \
   -e SPLUNK_START_ARGS=--accept-license \
   -e SPLUNK_APPS_URL=$SPLUNK_APPS_URL \
   -e SPLUNKBASE_USERNAME=$SPLUNK_CLOUD_USERNAME \

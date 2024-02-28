@@ -12,23 +12,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Echo Secrets (Masked)
-        run: |
-          echo "Splunk APPS URL: ${{ secrets.SPLUNK_APPS_URL }}"
-          echo "Splunk PASSWORD: ${{ secrets.SPLUNK_PASSWORD }}"
-          echo "Splunk CLOUD USERNAME: ${{ secrets.SPLUNK_CLOUD_USERNAME }}"
-          echo "Splunk CLOUD PASSWORD: ${{ secrets.SPLUNK_CLOUD_PASSWORD }}"
-          echo "Splunk LICENSE URI: ${{ secrets.SPLUNK_LICENSE_URI }}"
-
       - name: Start Splunk Server
         uses: ./
         with:
           splunk-image: "splunk/splunk:latest"
-          splunk-apps-url: ${{ secrets.SPLUNK_APPS_URL }}
+          splunk-container-name: ${{ vars.SPLUNK_CONTAINER_NAME }}
+          splunk-apps-url: ${{ vars.SPLUNK_APPS_URL }}
           splunk-password: ${{ secrets.SPLUNK_PASSWORD }}
-          splunk-cloud-username: ${{ secrets.SPLUNK_CLOUD_USERNAME }}
+          splunk-cloud-username: ${{ vars.SPLUNK_CLOUD_USERNAME }}
           splunk-cloud-password: ${{ secrets.SPLUNK_CLOUD_PASSWORD }}
-          splunk-license-uri: ${{ secrets.SPLUNK_LICENSE_URI }}
+          splunk-license-uri: ${{ vars.SPLUNK_LICENSE_URI }}
           splunk-app-port: "8000"
           splunk-mgmt-port: "8089"
           timezone: "UTC"

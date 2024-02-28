@@ -5,6 +5,11 @@ inputs:
     description: 'The Splunk Docker image to use. Default is "splunk/splunk:latest".'
     default: "splunk/splunk:latest"
 
+  splunk-container-name:
+    type: string
+    description: "The name of the Splunk container to create."
+    default: "so1"
+
   splunk-apps-url:
     type: string
     description: "The URL to a tarball of Splunk apps to install."

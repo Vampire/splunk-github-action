@@ -4,8 +4,8 @@ const config = {
   username: "admin", // Update with actual admin username if different
   password: process.env.SPLUNK_PASSWORD, // Ensure SPLUNK_PASSWORD is set in your environment variables
   scheme: "https",
-  host: "so1", // Update with your Splunk container's hostname or IP
-  port: "8089", // Update if using a custom management port
+  host: process.env.SPLUNK_CONTAINER_NAME, // Ensure SPLUNK_CONTAINER_NAME is set in your environment variables
+  port: process.env.SPLUNK_MGMT_PORT, // Ensure SPLUNK_MGMT_PORT is set in your environment variables
 };
 
 const service = new splunkjs.Service(config);

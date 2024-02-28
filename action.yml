@@ -11,6 +11,11 @@ inputs:
     required: false
     default: "splunk/splunk:latest"
 
+  splunk-container-name:
+    description: "Name of the Splunk container to create"
+    required: true
+    default: "so1"
+
   splunk-apps-url:
     description: "URL to a tarball of Splunk apps to install"
     required: false
@@ -55,6 +60,7 @@ runs:
   image: "Dockerfile"
   args:
     - ${{ inputs.splunk-image }}
+    - ${{ inputs.splunk-container-name }}
     - ${{ inputs.splunk-apps-url }}
     - ${{ inputs.splunk-password }}
     - ${{ inputs.splunk-cloud-username }}
