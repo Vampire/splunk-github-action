@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Use Node.js 20
         uses: actions/setup-node@v4
@@ -90,7 +90,7 @@ jobs:
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Use Node.js 20
         uses: actions/setup-node@v4
