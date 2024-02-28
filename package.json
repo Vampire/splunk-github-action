@@ -1,0 +1,37 @@
+{
+  "name": "@nathangr01/splunk-github-action",
+  "description": "Splunk GitHub Action",
+  "version": "0.1.0",
+  "author": "Nathan Gruber <nathan.gruber@datagon.ai>",
+  "bugs": {
+    "url": "https://github.com/datagon-ai-gmbh/splunk-github-action/issues"
+  },
+  "devDependencies": {
+    "@supercharge/eslint-config": "~2.0.0",
+    "c8": "~8.0.1",
+    "eslint": "~8.46.0",
+    "expect": "~29.6.2",
+    "mongoose": "~7.4.2",
+    "uvu": "~0.5.6"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "homepage": "https://datagon.ai",
+  "keywords": [
+    "github",
+    "github-action",
+    "datagonai",
+    "splunk"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datagon-ai-gmbh/splunk-github-action.git"
+  },
+  "scripts": {
+    "lint": "eslint test --ext .js",
+    "test": "c8 --include=dist uvu --ignore fixtures",
+    "posttest": "c8 report --reporter=html"
+  }
+}

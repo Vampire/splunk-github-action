@@ -1,0 +1,35 @@
+# See https://github.com/krzema12/github-actions-typing
+inputs:
+  splunk-image:
+    type: string
+    description: 'The Splunk Docker image to use. Default is "splunk/splunk:latest".'
+    default: "splunk/splunk:latest"
+
+  splunk-apps-url:
+    type: string
+    description: "The URL to a tarball of Splunk apps to install."
+    default: ""
+
+  splunk-password:
+    type: string
+    description: "The password for the Splunk admin user. This is a required field."
+
+  splunk-cloud-username:
+    type: string
+    description: "The username for Splunk Cloud, if applicable."
+    default: ""
+
+  splunk-cloud-password:
+    type: string
+    description: "The password for Splunk Cloud, if applicable."
+    default: ""
+
+  splunk-license-uri:
+    type: string
+    description: "The URI for a Splunk license file, if using a license that is not the free version."
+    default: ""
+
+  timezone:
+    type: string
+    description: 'The timezone for the Splunk instance. Default is "UTC".'
+    default: "UTC"

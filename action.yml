@@ -1,0 +1,52 @@
+name: "Splunk in GitHub Actions"
+description: "Start a Splunk instance (on default web port 8000 and other necessary ports)"
+
+branding:
+  icon: "activity"
+  color: "blue"
+
+inputs:
+  splunk-image:
+    description: 'Splunk Docker image to use (default "splunk/splunk:latest")'
+    required: false
+    default: "splunk/splunk:latest"
+
+  splunk-apps-url:
+    description: "URL to a tarball of Splunk apps to install"
+    required: false
+    default: ""
+
+  splunk-password:
+    description: "Password for the Splunk admin user"
+    required: true
+
+  splunk-cloud-username:
+    description: "Splunk Cloud username (if using Splunk Cloud)"
+    required: false
+    default: ""
+
+  splunk-cloud-password:
+    description: "Splunk Cloud password (if using Splunk Cloud)"
+    required: false
+    default: ""
+
+  splunk-license-uri:
+    description: "URI for Splunk license (if not using the free version)"
+    required: false
+    default: ""
+
+  timezone:
+    description: 'Timezone for the Splunk instance (default "UTC")'
+    required: false
+    default: "UTC"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.splunk-image }}
+    - ${{ inputs.splunk-password }}
+    - ${{ inputs.splunk-cloud-username }}
+    - ${{ inputs.splunk-cloud-password }}
+    - ${{ inputs.splunk-license-uri }}
+    - ${{ inputs.timezone }}

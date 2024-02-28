@@ -1,0 +1,11 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "@supercharge"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  }
+}
