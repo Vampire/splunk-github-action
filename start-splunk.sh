@@ -22,9 +22,14 @@ fi
 
 echo "::group::Starting Splunk instance"
 echo "  - image [$SPLUNK_IMAGE]"
-echo "  - timezone [$TZ]"
+echo "  - apps url [$SPLUNK_APPS_URL]"
+echo "  - password [$SPLUNK_PASSWORD]"
+echo "  - cloud username [$SPLUNK_CLOUD_USERNAME]"
+echo "  - cloud password [$SPLUNK_CLOUD_PASSWORD]"
+echo "  - license uri [$SPLUNK_LICENSE_URI]"
 echo "  - app port [$SPLUNK_APP_PORT]"
 echo "  - mgmt port [$SPLUNK_MGMT_PORT]"
+echo "  - timezone [$TZ]"
 echo ""
 
 docker run --name so1 \
