@@ -55,6 +55,7 @@ runs:
   image: "Dockerfile"
   args:
     - ${{ inputs.splunk-image }}
+    - ${{ inputs.splunk-apps-url }}
     - ${{ inputs.splunk-password }}
     - ${{ inputs.splunk-cloud-username }}
     - ${{ inputs.splunk-cloud-password }}
