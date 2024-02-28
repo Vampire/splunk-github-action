@@ -67,7 +67,7 @@ wait_for_splunk() {
     exit 2
   fi
 
-  until node checkSplunkAvailability.js
+  until node /checkSplunkAvailability.js
   do
     echo "Attempt $TIMER: Splunk is not available yet."
     sleep $RETRY_INTERVAL
