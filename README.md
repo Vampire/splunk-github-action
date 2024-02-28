@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://datagon.ai">
-    <img width="471" style="max-width:100%;" src="https://datagon.ai/wp-content/uploads/2023/09/Datagon-AI-Logo-Quadratic.png" />
+    <img width="200" style="max-width:100%;" src="https://datagon.ai/wp-content/uploads/2023/09/Datagon-AI-Logo-Quadratic.png" />
   </a>
   <br/>
   <br/>
