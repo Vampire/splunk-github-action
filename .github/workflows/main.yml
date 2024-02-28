@@ -1,0 +1,26 @@
+name: Start Splunk Server
+
+on: [push, pull_request]
+
+jobs:
+  splunk-action:
+    name: Start Splunk Server
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Start Splunk Server
+        uses: ./
+        with:
+          splunk-image: "splunk/splunk:latest"
+          splunk-apps-url: ""
+          splunk-password: ${{ secrets.SPLUNK_PASSWORD }}
+          splunk-cloud-username: ""
+          splunk-cloud-password: ""
+          splunk-license-uri: ""
+          splunk-app-port: "8000"
+          splunk-mgmt-port: "8089"
+          timezone: "UTC"
