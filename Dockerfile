@@ -6,6 +6,7 @@ RUN apk add --update nodejs npm
 
 # Copy the start script and package.json to the container
 COPY start-splunk.sh /start-splunk.sh
+COPY checkSplunkAvailability.js /checkSplunkAvailability.js
 COPY package.json /package.json
 
 # Install Splunk SDK and other Node.js dependencies
