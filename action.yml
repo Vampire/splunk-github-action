@@ -35,6 +35,16 @@ inputs:
     required: false
     default: ""
 
+  splunk-app-port:
+    description: "Port for the Splunk web interface (default 8000)"
+    required: false
+    default: "8000"
+
+  splunk-mgmt-port:
+    description: "Port for the Splunk management interface (default 8089)"
+    required: false
+    default: "8089"
+
   timezone:
     description: 'Timezone for the Splunk instance (default "UTC")'
     required: false
@@ -49,4 +59,6 @@ runs:
     - ${{ inputs.splunk-cloud-username }}
     - ${{ inputs.splunk-cloud-password }}
     - ${{ inputs.splunk-license-uri }}
+    - ${{ inputs.splunk-app-port }}
+    - ${{ inputs.splunk-mgmt-port }}
     - ${{ inputs.timezone }}

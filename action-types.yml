@@ -29,6 +29,16 @@ inputs:
     description: "The URI for a Splunk license file, if using a license that is not the free version."
     default: ""
 
+  splunk-app-port:
+    type: string
+    description: "The port for the Splunk web interface. Default is 8000."
+    default: "8000"
+
+  splunk-mgmt-port:
+    type: string
+    description: "The port for the Splunk management interface. Default is 8089."
+    default: "8089"
+
   timezone:
     type: string
     description: 'The timezone for the Splunk instance. Default is "UTC".'
