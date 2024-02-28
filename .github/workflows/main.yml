@@ -16,11 +16,11 @@ jobs:
         uses: ./
         with:
           splunk-image: "splunk/splunk:latest"
-          splunk-apps-url: ${SPLUNK_APPS_URL}
-          splunk-password: ${SPLUNK_PASSWORD}
-          splunk-cloud-username: ${SPLUNK_CLOUD_USERNAME}
-          splunk-cloud-password: ${SPLUNK_CLOUD_PASSWORD}
-          splunk-license-uri: ${SPLUNK_LICENSE_URI}
+          splunk-apps-url: ${{ secrets.SPLUNK_APPS_URL }}
+          splunk-password: ${{ secrets.SPLUNK_PASSWORD }}
+          splunk-cloud-username: ${{ secrets.SPLUNK_CLOUD_USERNAME }}
+          splunk-cloud-password: ${{ secrets.SPLUNK_CLOUD_PASSWORD }}
+          splunk-license-uri: ${{ secrets.SPLUNK_LICENSE_URI }}
           splunk-app-port: "8000"
           splunk-mgmt-port: "8089"
           timezone: "UTC"

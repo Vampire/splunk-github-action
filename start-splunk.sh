@@ -1,31 +1,40 @@
 #!/bin/sh
 
-# Map input values from the GitHub Actions workflow to shell variables
-SPLUNK_IMAGE=${1:-splunk/splunk:latest}
-SPLUNK_APPS_URL=$2
-SPLUNK_PASSWORD=$3
-SPLUNK_CLOUD_USERNAME=$4
-SPLUNK_CLOUD_PASSWORD=$5
-SPLUNK_LICENSE_URI=$6
-SPLUNK_APP_PORT=${7:-8000}
-SPLUNK_MGMT_PORT=${8:-8089}
-TZ=${9:-UTC}
+# Default values
+SPLUNK_IMAGE="splunk/splunk:latest"
+SPLUNK_APP_PORT="8000"
+SPLUNK_MGMT_PORT="8089"
+TZ="UTC"
+
+# Parse named arguments
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --splunk-image) SPLUNK_IMAGE="$2"; shift 2 ;;
+    --splunk-apps-url) SPLUNK_APPS_URL="$2"; shift 2 ;;
+    --splunk-password) SPLUNK_PASSWORD="$2"; shift 2 ;;
+    --splunk-cloud-username) SPLUNK_CLOUD_USERNAME="$2"; shift 2 ;;
+    --splunk-cloud-password) SPLUNK_CLOUD_PASSWORD="$2"; shift 2 ;;
+    --splunk-license-uri) SPLUNK_LICENSE_URI="$2"; shift 2 ;;
+    --splunk-app-port) SPLUNK_APP_PORT="$2"; shift 2 ;;
+    --splunk-mgmt-port) SPLUNK_MGMT_PORT="$2"; shift 2 ;;
+    --timezone) TZ="$2"; shift 2 ;;
+    *) echo "Unknown option $1"; exit 2 ;;
+  esac
+done
 
 # Check for required Splunk password
 if [ -z "$SPLUNK_PASSWORD" ]; then
-  echo ""
-  echo "Missing Splunk password in the [splunk-password] input. Received value: $SPLUNK_PASSWORD"
-  echo ""
-
+  echo "Missing Splunk password in the [splunk-password] input."
   exit 2
 fi
 
+# Log the configurations
 echo "::group::Starting Splunk instance"
 echo "  - image [$SPLUNK_IMAGE]"
 echo "  - apps url [$SPLUNK_APPS_URL]"
-echo "  - password [$SPLUNK_PASSWORD]"
+echo "  - password [REDACTED]"
 echo "  - cloud username [$SPLUNK_CLOUD_USERNAME]"
-echo "  - cloud password [$SPLUNK_CLOUD_PASSWORD]"
+echo "  - cloud password [REDACTED]"
 echo "  - license uri [$SPLUNK_LICENSE_URI]"
 echo "  - app port [$SPLUNK_APP_PORT]"
 echo "  - mgmt port [$SPLUNK_MGMT_PORT]"
