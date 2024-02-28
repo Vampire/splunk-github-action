@@ -12,6 +12,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Echo Secrets (Masked)
+        run: |
+          echo "Splunk APPS URL: ${{ secrets.SPLUNK_APPS_URL }}"
+          echo "Splunk PASSWORD: ${{ secrets.SPLUNK_PASSWORD }}"
+          echo "Splunk CLOUD USERNAME: ${{ secrets.SPLUNK_CLOUD_USERNAME }}"
+          echo "Splunk CLOUD PASSWORD: ${{ secrets.SPLUNK_CLOUD_PASSWORD }}"
+          echo "Splunk LICENSE URI: ${{ secrets.SPLUNK_LICENSE_URI }}"
+
       - name: Start Splunk Server
         uses: ./
         with:
