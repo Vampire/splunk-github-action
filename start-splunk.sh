@@ -52,22 +52,32 @@ fi
 echo "::endgroup::"
 
 # Helper function to wait for Splunk to be started before moving on
-wait_for_splunk () {
+wait_for_splunk() {
   echo "::group::Waiting for Splunk to accept connections"
-  sleep 1
   TIMER=0
+  MAX_RETRIES=30
+  RETRY_INTERVAL=20 # Seconds to wait between retries
 
-  until $(curl --output /dev/null --silent --head --fail http://localhost:8000)
+  # Ensure node is available in the script's environment
+  which node
+  if [ $? -ne 0 ]; then
+    echo "Node.js is not installed. Exiting."
+    exit 2
+  fi
+
+  until node checkSplunkAvailability.js
   do
-    echo "."
-    sleep 1
+    echo "Attempt $TIMER: Splunk is not available yet."
+    sleep $RETRY_INTERVAL
     TIMER=$((TIMER + 1))
 
-    if [[ $TIMER -eq 600 ]]; then
-      echo "Splunk did not initialize within 10 minutes. Exiting."
+    if [ $TIMER -ge $MAX_RETRIES ]; then
+      echo "Splunk did not become available within the expected timeframe. Exiting."
       exit 2
     fi
   done
+
+  echo "Splunk is now available."
   echo "::endgroup::"
 }
 
