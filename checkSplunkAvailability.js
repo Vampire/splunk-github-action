@@ -4,8 +4,10 @@ const config = {
   username: "admin", // Update with actual admin username if different
   password: process.env.SPLUNK_PASSWORD, // Ensure SPLUNK_PASSWORD is set in your environment variables
   host: "localhost",
-  port: process.env.SPLUNK_MGMT_PORT, // Ensure SPLUNK_MGMT_PORT is set in your environment variables
+  port: String(process.env.SPLUNK_MGMT_PORT), // Ensure SPLUNK_MGMT_PORT is set in your environment variables
 };
+
+const service = new splunkjs.Service(config);
 
 console.log("Checking Splunk availability...");
 console.log("Splunk container name:", process.env.SPLUNK_CONTAINER_NAME);
@@ -13,8 +15,6 @@ console.log("Splunk management port:", process.env.SPLUNK_MGMT_PORT);
 
 const checkSplunkAvailability = async () => {
   try {
-    const service = new splunkjs.Service(config);
-
     await service.login(function (err, success) {
       if (err || !success) {
         console.error("Splunk login failed:", err);
