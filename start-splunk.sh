@@ -45,6 +45,7 @@ docker run --name $SPLUNK_CONTAINER_NAME \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --restart on-failure \
   --detach \
+  --network host \
   $SPLUNK_IMAGE
 
 if [ $? -ne 0 ]; then
