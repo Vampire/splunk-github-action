@@ -22,4 +22,5 @@ try {
   });
 } catch (error) {
   console.error("Error occurred:", error);
+  process.exit(2); // Exit with error code to indicate failure
 }
