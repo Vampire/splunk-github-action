@@ -8,10 +8,13 @@ const config = {
   port: process.env.SPLUNK_MGMT_PORT, // Ensure SPLUNK_MGMT_PORT is set in your environment variables
 };
 
-const service = new splunkjs.Service(config);
+console.log("Checking Splunk availability...");
+console.log("Splunk container name:", process.env.SPLUNK_CONTAINER_NAME);
+console.log("Splunk management port:", process.env.SPLUNK_MGMT_PORT);
 
 const checkSplunkAvailability = async () => {
   try {
+    const service = new splunkjs.Service(config);
     service.login(function (err, success) {
       if (err || !success) {
         console.error("Splunk login failed:", err);

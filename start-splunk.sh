@@ -67,6 +67,10 @@ wait_for_splunk() {
     exit 2
   fi
 
+  export SPLUNK_PASSWORD=$SPLUNK_PASSWORD
+  export SPLUNK_CONTAINER_NAME=$SPLUNK_CONTAINER_NAME
+  export SPLUNK_MGMT_PORT=$SPLUNK_MGMT_PORT
+
   until node /checkSplunkAvailability.js
   do
     echo "Attempt $TIMER: Splunk is not available yet."
