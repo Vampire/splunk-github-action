@@ -10,17 +10,21 @@ const config = {
 
 const service = new splunkjs.Service(config);
 
-try {
-  service.login(function (err, success) {
-    if (err || !success) {
-      console.error("Splunk login failed:", err);
-      process.exit(2); // Exit with error code to indicate failure
-    } else {
-      console.log("Splunk login successful");
-      process.exit(0); // Exit with success code
-    }
-  });
-} catch (error) {
-  console.error("Error occurred:", error);
-  process.exit(2); // Exit with error code to indicate failure
-}
+const checkSplunkAvailability = async () => {
+  try {
+    service.login(function (err, success) {
+      if (err || !success) {
+        console.error("Splunk login failed:", err);
+        process.exit(2); // Exit with error code to indicate failure
+      } else {
+        console.log("Splunk login successful");
+        process.exit(0); // Exit with success code
+      }
+    });
+  } catch (error) {
+    console.error("Error occurred:", error);
+    process.exit(2); // Exit with error code to indicate failure
+  }
+};
+
+checkSplunkAvailability();
