@@ -3,7 +3,7 @@ const splunkjs = require("splunk-sdk");
 const config = {
   username: "admin", // Update with actual admin username if different
   password: process.env.SPLUNK_PASSWORD, // Ensure SPLUNK_PASSWORD is set in your environment variables
-  host: localhost,
+  host: "localhost",
   port: process.env.SPLUNK_MGMT_PORT, // Ensure SPLUNK_MGMT_PORT is set in your environment variables
 };
 
