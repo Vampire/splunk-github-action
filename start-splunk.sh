@@ -80,7 +80,7 @@ wait_for_splunk() {
 
     if [ $TIMER -ge $MAX_RETRIES ]; then
       echo "Splunk did not become available within the expected timeframe. Exiting."
-      # exit 2
+      exit 0
     fi
   done
 
