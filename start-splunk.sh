@@ -33,12 +33,23 @@ echo "  - mgmt port [$SPLUNK_MGMT_PORT]"
 echo "  - timezone [$TZ]"
 echo ""
 
+# Stop and remove the container if it exists
+docker stop $SPLUNK_CONTAINER_NAME
+docker rm -f $SPLUNK_CONTAINER_NAME
+docker volume rm splunkvar
+docker volume rm splunketc
+
+# Create the volumes
+docker volume create splunkvar
+docker volume create splunketc
+
 docker run --name $SPLUNK_CONTAINER_NAME \
   -e SPLUNK_START_ARGS=--accept-license \
   -e SPLUNK_APPS_URL=$SPLUNK_APPS_URL \
   -e SPLUNKBASE_USERNAME=$SPLUNK_CLOUD_USERNAME \
   -e SPLUNKBASE_PASSWORD=$SPLUNK_CLOUD_PASSWORD \
   -e SPLUNK_PASSWORD=$SPLUNK_PASSWORD \
+  -e SPLUNK_LICENSE_URI=$SPLUNK_LICENSE_URI \
   -e TZ=$TZ \
   -p 8000:$SPLUNK_APP_PORT \
   -p 8088:8088 \
@@ -48,6 +59,8 @@ docker run --name $SPLUNK_CONTAINER_NAME \
   -p 9887:9887 \
   -p 9997:9997 \
   --volume /var/run/docker.sock:/var/run/docker.sock \
+  --volume splunkvar:/opt/splunk/var \
+  --volume splunketc:/opt/splunk/etc \
   --restart on-failure \
   --detach \
   --network=host \
@@ -63,7 +76,7 @@ echo "::endgroup::"
 wait_for_splunk() {
   echo "::group::Waiting for Splunk to accept connections"
   TIMER=0
-  MAX_RETRIES=15
+  MAX_RETRIES=10 # Number of retries before considering the service unavailable
   RETRY_INTERVAL=20 # Seconds to wait between retries
 
   # Ensure node is available in the script's environment

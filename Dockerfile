@@ -10,7 +10,6 @@ COPY checkSplunkAvailability.js /checkSplunkAvailability.js
 COPY package.json /package.json
 
 # Install Splunk SDK and other Node.js dependencies
-# Ensure your package.json includes splunk-sdk and any other dependencies
 RUN npm install
 
 # Make the start script executable
