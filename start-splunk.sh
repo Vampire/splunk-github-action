@@ -48,8 +48,6 @@ docker run --name $SPLUNK_CONTAINER_NAME \
   -p 8065:8065 \
   -p 9887:9887 \
   -p 9997:9997 \
-  --volume splunkvar:/opt/splunk/var \
-  --volume splunketc:/opt/splunk/etc \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --restart on-failure \
   --detach \
@@ -66,7 +64,7 @@ echo "::endgroup::"
 wait_for_splunk() {
   echo "::group::Waiting for Splunk to accept connections"
   TIMER=0
-  MAX_RETRIES=10
+  MAX_RETRIES=15
   RETRY_INTERVAL=20 # Seconds to wait between retries
 
   # Ensure node is available in the script's environment
