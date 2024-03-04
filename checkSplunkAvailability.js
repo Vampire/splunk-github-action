@@ -15,15 +15,8 @@ console.log("Splunk management port:", process.env.SPLUNK_MGMT_PORT);
 
 const checkSplunkAvailability = async () => {
   try {
-    await service.login(function (err, success) {
-      if (err || !success) {
-        console.error("Splunk login failed:", err);
-        process.exit(2); // Exit with error code to indicate failure
-      } else {
-        console.log("Splunk login successful");
-        process.exit(0); // Exit with success code
-      }
-    });
+    const answer = await service.login();
+    console.log("Splunk is available:", answer);
   } catch (error) {
     console.error("Error occurred:", error);
     process.exit(2); // Exit with error code to indicate failure
