@@ -33,7 +33,7 @@ echo "  - mgmt port [$SPLUNK_MGMT_PORT]"
 echo "  - timezone [$TZ]"
 echo ""
 
-sudo docker run --name $SPLUNK_CONTAINER_NAME \
+docker run --name $SPLUNK_CONTAINER_NAME \
   -e SPLUNK_START_ARGS=--accept-license \
   -e SPLUNK_APPS_URL=$SPLUNK_APPS_URL \
   -e SPLUNKBASE_USERNAME=$SPLUNK_CLOUD_USERNAME \

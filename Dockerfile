@@ -16,5 +16,8 @@ RUN npm install
 # Make the start script executable
 RUN chmod +x /start-splunk.sh
 
+# Use root as the user
+USER root
+
 # Set the entrypoint to the start script
 ENTRYPOINT ["/start-splunk.sh"]
