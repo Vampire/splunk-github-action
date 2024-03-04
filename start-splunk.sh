@@ -53,7 +53,7 @@ docker run --name $SPLUNK_CONTAINER_NAME \
   --volume /var/run/docker.sock:/var/run/docker.sock \
   --restart on-failure \
   --detach \
-  --network host \
+  # --network host \
   $SPLUNK_IMAGE
 
 if [ $? -ne 0 ]; then
@@ -66,7 +66,7 @@ echo "::endgroup::"
 wait_for_splunk() {
   echo "::group::Waiting for Splunk to accept connections"
   TIMER=0
-  MAX_RETRIES=3
+  MAX_RETRIES=5
   RETRY_INTERVAL=20 # Seconds to wait between retries
 
   # Ensure node is available in the script's environment
