@@ -13,9 +13,6 @@ COPY package.json /package.json
 # Ensure your package.json includes splunk-sdk and any other dependencies
 RUN npm install
 
-# Pull the Splunk docker image
-RUN docker pull splunk/splunk:latest
-
 # Make the start script executable
 RUN chmod +x /start-splunk.sh
 

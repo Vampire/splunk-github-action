@@ -11,6 +11,14 @@ SPLUNK_APP_PORT=${8:-"8000"}
 SPLUNK_MGMT_PORT=${9:-"8089"}
 TZ=${10:-"UTC"}
 
+echo "::group::Pulling Splunk image"
+docker pull $SPLUNK_IMAGE
+if [ $? -ne 0 ]; then
+    echo "Error pulling Splunk Docker image"
+    exit 2
+fi
+echo "::endgroup::"
+
 # Log the configurations
 echo "::group::Starting Splunk instance"
 echo "  - image [$SPLUNK_IMAGE]"
