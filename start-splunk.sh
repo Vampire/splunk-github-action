@@ -24,7 +24,7 @@ echo "::group::Starting Splunk instance"
 echo "  - image [$SPLUNK_IMAGE]"
 echo "  - container name [$SPLUNK_CONTAINER_NAME]"
 echo "  - apps url [$SPLUNK_APPS_URL]"
-echo "  - password [$SPLUNK_PASSWORD]"
+echo "  - password [${SPLUNK_PASSWORD:0:5}...]"
 echo "  - cloud username [$SPLUNK_CLOUD_USERNAME]"
 echo "  - cloud password [$SPLUNK_CLOUD_PASSWORD]"
 echo "  - license uri [$SPLUNK_LICENSE_URI]"
@@ -38,6 +38,8 @@ docker stop $SPLUNK_CONTAINER_NAME
 docker rm -f $SPLUNK_CONTAINER_NAME
 docker volume rm splunkvar
 docker volume rm splunketc
+rm -rf /opt/splunk/etc
+rm -rf /opt/splunk/var
 
 # Create the volumes
 docker volume create splunkvar
