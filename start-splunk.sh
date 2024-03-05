@@ -78,7 +78,7 @@ echo "::endgroup::"
 wait_for_splunk() {
   echo "::group::Waiting for Splunk to accept connections"
   TIMER=0
-  MAX_RETRIES=10 # Number of retries before considering the service unavailable
+  MAX_RETRIES=6 # Number of retries before considering the service unavailable
   RETRY_INTERVAL=20 # Seconds to wait between retries
 
   # Ensure node is available in the script's environment
