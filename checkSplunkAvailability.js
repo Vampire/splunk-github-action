@@ -9,10 +9,6 @@ const config = {
 
 const service = new splunkjs.Service(config);
 
-console.log("Checking Splunk availability...");
-console.log("Splunk container name:", process.env.SPLUNK_CONTAINER_NAME);
-console.log("Splunk management port:", process.env.SPLUNK_MGMT_PORT);
-
 const checkSplunkAvailability = async () => {
   try {
     const answer = await service.login();
